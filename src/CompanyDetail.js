@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import JobCardList from "./JobCardList";
 import JoblyApi from "./api";
@@ -17,37 +17,38 @@ import JoblyApi from "./api";
  */
 
 function CompanyDetail() {
-  const [company, setCompany] = useState({
-    name: "",
-    description: "",
-    jobs: [],
-  });
   const [isLoading, setIsLoading] = useState(true);
+  const [company, setCompany] = useState(null);
+  const [error, setError] = useState(false);
   const { handle } = useParams();
-
   console.log("CompanyDetail is running");
 
   useEffect(function initializeCompanyJobsOnMount() {
     async function initializeCompanyJobs() {
-      let resp = await JoblyApi.getCompany(handle);
-      console.log("resp:", resp);
-      setCompany({
-        name: resp.name,
-        description: resp.description,
-        jobs: resp.jobs,
-      });
+      let companyData;
+      try {
+        companyData = await JoblyApi.getCompany(handle);
+      } catch (err) {
+        setError(true);
+      }
+
+      setCompany(companyData);
       setIsLoading(false);
     }
     initializeCompanyJobs();
   }, []);
-
-  if (isLoading) return <p>Loading....</p>;
+  if (isLoading) return <p>Loading...</p>;
 
   return (
-    <div className="CompanyDetail">
-      <h1 className="CompanyDetail-header">{company.name}</h1>
-      <p className="CompanyDetail-description">{company.description}</p>
-      <JobCardList jobs={company.jobs} />
+    <div>
+      {company && (
+        <div className="CompanyDetail">
+          <h1 className="CompanyDetail-header">{company.name}</h1>
+          <p className="CompanyDetail-description">{company.description}</p>
+          <JobCardList jobs={company.jobs} />
+        </div>
+      )}
+      {error && <p>Sorry, no such company!</p>}
     </div>
   );
 }
