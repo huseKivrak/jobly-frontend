@@ -15,7 +15,7 @@ import { useState } from "react";
 function SearchForm({ handleSearch }) {
   const [formData, setFormData] = useState({ term: "" });
 
-  console.log("SearchForm is running", formData);
+  console.log("SearchForm", formData);
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -27,6 +27,7 @@ function SearchForm({ handleSearch }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    console.log("SearchForm handleSubmit:",formData);
     handleSearch(formData);
   }
 
