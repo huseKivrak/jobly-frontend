@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 /**
  * Form to search for a string
  *
@@ -10,10 +12,40 @@
  * {CompanyList, JobList} -> SearchForm
  */
 
-function SearchForm() {
-  console.log("SearchForm is running");
+function SearchForm({ handleSearch }) {
+  const [formData, setFormData] = useState({ term: "" });
 
-  return <div className="SearchForm"></div>;
+  console.log("SearchForm is running", formData);
+
+  function handleChange(evt) {
+    const { name, value } = evt.target;
+    setFormData(fd => ({
+      ...fd,
+      [name]: value
+    }))
+  }
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    handleSearch(formData);
+  }
+
+  return (
+    <div className="SearchForm">
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="search-input"></label>
+        <input
+          id="search-input"
+          name="term"
+          value={formData.term}
+          placeholder="Enter search term..."
+          onChange={handleChange}
+          required
+        />
+        <button>Submit</button>
+      </form>
+    </div>
+  );
 }
 
 export default SearchForm;
