@@ -13,7 +13,7 @@ import { useState } from "react";
  */
 
 function SearchForm({ handleSearch }) {
-  const [formData, setFormData] = useState({ term: "" });
+  const [formData, setFormData] = useState({term: ""});
 
   console.log("SearchForm", formData);
 
@@ -29,6 +29,7 @@ function SearchForm({ handleSearch }) {
     evt.preventDefault();
     console.log("SearchForm handleSubmit:",formData);
     handleSearch(formData);
+    setFormData({term: ""});
   }
 
   return (

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CompanyCard from "./CompanyCard";
 import SearchForm from './SearchForm';
-import findCompanies from "./api.js";
+import { findCompanies } from "./api.js";
 
 /**
  * List of searchable companies
@@ -15,18 +15,18 @@ import findCompanies from "./api.js";
  */
 
 function CompanyList() {
-  const [companies, setCompanies] = useState();
+  const [companies, setCompanies] = useState([]);
 
   console.log("CompanyList is running");
 
-  async function search({ term }) {
+  async function searchAndSetCompanies({ term }) {
     const companyResults = await findCompanies(term);
     setCompanies(companyResults);
   }
 
   return (
     <div className="CompanyList">
-      <SearchForm handleSearch={search}/>
+      <SearchForm handleSearch={searchAndSetCompanies}/>
       {companies.map(c => (
         <CompanyCard
         handle={c.handle}
