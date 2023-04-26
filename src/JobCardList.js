@@ -14,31 +14,7 @@ import JobCard from "./JobCard";
  */
 
 
-const testJobs = [
-  {
-    id: 1,
-    companyName: "Company1",
-    title: "Employee",
-    equity: .95,
-    salary: 1000
-  },
-  {
-    id: 2,
-    companyName: "Company2",
-    title: "Owner",
-    equity: .66,
-    salary: 10
-  },
-  {
-    id: 3,
-    companyName: "Company3",
-    title: "Quality Assurance",
-    equity: .15,
-    salary: 1
-  }
-];
-
-function JobCardList({ jobs=testJobs }) {
+function JobCardList({ jobs }) {
   console.log("JobCardList is running", jobs)
   return (
     <div className="JobCardList">

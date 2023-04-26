@@ -14,7 +14,7 @@ import {NavLink} from 'react-router-dom';
 function Nav (){
   console.log("Nav is running");
   return (
-    <nav className="Nav navbar navbar-expand-xl navbar-light bg-light text-primary justify-content-between">
+    <nav className="Nav navbar navbar-light bg-light text-primary justify-content-between">
       <NavLink className="nav-item" to ="/">Jobly</NavLink>
       <NavLink className="nav-item" to ="/companies">Companies</NavLink>
       <NavLink className="nav-item" to ="/jobs">Jobs</NavLink>

@@ -4,21 +4,19 @@ import { Link } from "react-router-dom";
  *
  * Display element for a single company
  *
- *
  * Props:
  *  - handle
  *  - name
  *  - description
  *  - logoUrl
  *
- *
  * States:
  * - none
- *
  *
  * CompanyList > CompanyCard
  */
 
+//TODO: better alt tags
 function CompanyCard({ handle, name, description, logoUrl }) {
   console.log("CompanyCard is running");
   return (

@@ -2,6 +2,8 @@ import { useParams, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import JobCardList from "./JobCardList";
 import JoblyApi from "./api";
+
+
 /** CompanyDetail
  *
  * findJobsByCompany(): gets company data for '/:handle` using JoblyApi
@@ -10,7 +12,7 @@ import JoblyApi from "./api";
  * - none
  *
  * States:
- * - none
+ * - none  TODO: update states
  *
  *
  * App > CompanyDetail > JobCardList
@@ -32,14 +34,15 @@ function CompanyDetail() {
         setError(true);
       }
 
-      setCompany(companyData);
+      setCompany(companyData); //TODO: can move into try block
       setIsLoading(false);
     }
     initializeCompanyJobs();
-  }, []);
+  }, [handle]);
 
   if (isLoading) return <p>Loading...</p>;
 
+  //TODO: className to div
   return (
     <div>
       {company && (

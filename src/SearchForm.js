@@ -8,7 +8,7 @@ import { useState } from "react";
  * - handleSearch: calls function in parent to search for string
  *
  * State:
- * - formData
+ * - formData TODO: describe form
  *
  * [CompanyList, JobList] -> SearchForm
  */
@@ -29,7 +29,7 @@ function SearchForm({ handleSearch }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     console.log("SearchForm handleSubmit:",formData);
-    handleSearch(formData);
+    handleSearch(formData); //TODO: can just pass formData.term
     setFormData({term: ""});
   }
 

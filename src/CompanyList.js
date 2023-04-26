@@ -8,7 +8,7 @@ import JoblyApi from "./api";
  *
  * Props:
  *
- * State:
+ * State:  TODO: add other state
  * - companies: [{handle, name, description, numEmployees, logoUrl}]
  *
  * RoutesList -> CompanyList -> {SearchForm, CompanyCard}
@@ -29,18 +29,19 @@ function CompanyList() {
     initializeCompanies();
   }, []);
 
+  //TODO: docstring
   async function searchAndSetCompanies({ term }) {
     const companyResults = await JoblyApi.findCompanies(term);
     setCompanies(companyResults);
   }
 
-  if(isLoading) return <p>Loading...</p>
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <div className="CompanyList">
       <SearchForm handleSearch={searchAndSetCompanies} />
       {companies.map(c => (
-        <CompanyCard
+        <CompanyCard  //TODO: set key
           handle={c.handle}
           name={c.name}
           description={c.description}

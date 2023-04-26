@@ -7,6 +7,9 @@ import JobList from "./JobList";
 /**
  * RoutesList
  *
+ * Props: none
+ *
+ *
  * /companies/[invalid handle] -> redirect to /companies
  * /jobs/... -> redirect to /jobs
  *
