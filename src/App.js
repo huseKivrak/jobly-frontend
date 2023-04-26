@@ -2,16 +2,28 @@
 import './App.css';
 import RoutesList from './RoutesList';
 import Nav from './Nav';
-import JobCard from "./JobCard";
+import { BrowserRouter } from 'react-router-dom';
 
+/** App
+ * Renders Nav and RoutesList
+ *
+ *
+ * Props:
+ * - none
+ *
+ * States:
+ * - none
+ *
+ * App -> [Nav, RoutesList]
+ */
 function App() {
   return (
     <div className="App">
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Nav />
         <RoutesList />
-      </BrowserRouter> */}
-      <JobCard title="teacher" company="school" salary="100000" equity="0.5"/>
+      </BrowserRouter>
+
     </div>
   );
 }

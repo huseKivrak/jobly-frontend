@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("https://react-jobly-1.surge.sh/static/media/background.6549e727ece768243a0f.png")
 }
 
 code {

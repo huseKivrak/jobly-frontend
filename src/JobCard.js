@@ -4,12 +4,17 @@
  *
  *
  * Props:
- *  -title, company, salary, equity
+ *  -id, title, company, salary, equity
+ *
+ * States:
+ * - none
  *
  * JobCardList > JobCard
  */
-function JobCard({ title, company, salary, equity }) {
 
+
+function JobCard({ title, company, salary, equity }) {
+  console.log("JobCard is running")
   return (
     <div className="JobCard">
       <b className="JobCard-title">{title}</b>
