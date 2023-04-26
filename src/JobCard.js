@@ -13,12 +13,12 @@
  */
 
 
-function JobCard({ title, company, salary, equity }) {
+function JobCard({ title, companyName= "", salary, equity }) {
   console.log("JobCard is running")
   return (
     <div className="JobCard">
       <b className="JobCard-title">{title}</b>
-      <p>{company}</p>
+      {companyName && <p>{companyName}</p>}
       <p>Salary: {salary}</p>
       <p>Equity: {equity}</p>
     </div>
