@@ -18,13 +18,14 @@ import JoblyApi from "./api";
 
 function JobList() {
   const [jobs, setJobs] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(true);
   console.log("JobList is running");
 
   useEffect(function initializeJobsOnMount() {
     async function initializeJobs() {
       const allJobs = await JoblyApi.getAllJobs();
       setJobs(allJobs);
+      setIsLoading(false);
     }
     initializeJobs();
   }, []);
@@ -33,6 +34,9 @@ function JobList() {
     const jobResults = await JoblyApi.findJobs(term);
     setJobs(jobResults);
   }
+
+  if(isLoading) return <p>Loading...</p>
+
 
   return (
     <div className='JobList'>

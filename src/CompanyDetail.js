@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from "react";
 import JobCardList from "./JobCardList";
-import JoblyApi from './api';
+import JoblyApi from "./api";
 /** CompanyDetail
  *
  * findJobsByCompany(): gets company data for '/:handle` using JoblyApi
@@ -17,24 +17,31 @@ import JoblyApi from './api';
  */
 
 function CompanyDetail() {
-  const [company, setCompany] = useState({name: "", description: "", jobs:[]});
+  const [company, setCompany] = useState({
+    name: "",
+    description: "",
+    jobs: [],
+  });
+  const [isLoading, setIsLoading] = useState(true);
   const { handle } = useParams();
-
 
   console.log("CompanyDetail is running");
 
   useEffect(function initializeCompanyJobsOnMount() {
     async function initializeCompanyJobs() {
       let resp = await JoblyApi.getCompany(handle);
-      console.log("resp:" , resp);
+      console.log("resp:", resp);
       setCompany({
         name: resp.name,
         description: resp.description,
-        jobs: resp.jobs
-      })
+        jobs: resp.jobs,
+      });
+      setIsLoading(false);
     }
     initializeCompanyJobs();
   }, []);
+
+  if (isLoading) return <p>Loading....</p>;
 
   return (
     <div className="CompanyDetail">
