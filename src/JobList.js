@@ -12,7 +12,7 @@ import JoblyApi from "./api";
  * State:
  * - jobs: [{title, salary, equity, company_handle}]
  *
- * RoutesList -> JobList -> {SearchForm, JobCardList}
+ * RoutesList -> JobList -> [SearchForm, JobCardList]
  */
 
 

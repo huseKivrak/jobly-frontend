@@ -10,7 +10,7 @@ import JobCard from "./JobCard";
  * States:
  * - none
  *
- * {CompanyDetail, JobList} -> JobCardList -> JobCard
+ * [CompanyDetail, JobList] -> JobCardList -> JobCard
  */
 
 

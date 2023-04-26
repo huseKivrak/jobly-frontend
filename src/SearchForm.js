@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-/**
+/** SearchForm
+ *
  * Form to search for a string
  *
  * Props:
@@ -9,7 +10,7 @@ import { useState } from "react";
  * State:
  * - formData
  *
- * {CompanyList, JobList} -> SearchForm
+ * [CompanyList, JobList] -> SearchForm
  */
 
 function SearchForm({ handleSearch }) {
@@ -33,7 +34,7 @@ function SearchForm({ handleSearch }) {
   }
 
   return (
-    <div className="SearchForm mb-5">
+    <div className="SearchForm mt-4 mb-4">
       <form onSubmit={handleSubmit}>
         <label htmlFor="search-input"></label>
         <input

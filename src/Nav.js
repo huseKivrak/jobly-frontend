@@ -14,10 +14,10 @@ import {NavLink} from 'react-router-dom';
 function Nav (){
   console.log("Nav is running");
   return (
-    <nav className="Nav navbar navbar-expand-lg navbar-light bg-dark text-primary">
-      <NavLink to ="/">Jobly</NavLink>
-      <NavLink to ="/companies">Companies</NavLink>
-      <NavLink to ="/jobs">Jobs</NavLink>
+    <nav className="Nav navbar navbar-expand-xl navbar-light bg-light text-primary justify-content-between">
+      <NavLink className="nav-item" to ="/">Jobly</NavLink>
+      <NavLink className="nav-item" to ="/companies">Companies</NavLink>
+      <NavLink className="nav-item" to ="/jobs">Jobs</NavLink>
     </nav>
   )
 }

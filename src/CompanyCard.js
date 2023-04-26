@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
  *
  * CompanyList > CompanyCard
  */
+
 function CompanyCard({ handle, name, description, logoUrl }) {
   console.log("CompanyCard is running");
   return (
