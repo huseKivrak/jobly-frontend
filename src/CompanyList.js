@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CompanyCard from "./CompanyCard";
 import SearchForm from './SearchForm';
-import { findCompanies } from "./api.js";
+import JoblyApi from "./api";
 
 /**
  * List of searchable companies
@@ -19,8 +19,16 @@ function CompanyList() {
 
   console.log("CompanyList is running");
 
+  useEffect(function initializeCompaniesOnMount() {
+    async function initializeCompanies() {
+      const allCompanies = await JoblyApi.getCompanies();
+      setCompanies(allCompanies);
+    }
+    initializeCompanies();
+  }, []);
+
   async function searchAndSetCompanies({ term }) {
-    const companyResults = await findCompanies(term);
+    const companyResults = await JoblyApi.findCompanies(term);
     setCompanies(companyResults);
   }
 

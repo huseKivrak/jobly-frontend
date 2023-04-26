@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import JobCardList from './JobCardList';
 import SearchForm from './SearchForm';
-import { getAllJobs, findJobs } from "./api";
+import JoblyApi from "./api";
 
 /**
  * List of searchable jobs
@@ -23,14 +23,14 @@ function JobList() {
 
   useEffect(function initializeJobsOnMount() {
     async function initializeJobs() {
-      const allJobs = await getAllJobs();
+      const allJobs = await JoblyApi.getAllJobs();
       setJobs(allJobs);
     }
     initializeJobs();
   }, []);
 
   async function searchAndSetJobs({ term }) {
-    const jobResults = findJobs(term);
+    const jobResults = await JoblyApi.findJobs(term);
     setJobs(jobResults);
   }
 
