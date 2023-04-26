@@ -22,10 +22,12 @@ function CompanyCard({ handle, name, description, logoUrl }) {
   console.log("CompanyCard is running");
   return (
     <Link to={`/companies/${handle}`}>
-      <div className='CompanyCard'>
-        <h1 className='CompanyCard-header font-size-4'>{name}</h1>
-        <p>{description}</p>
-        {logoUrl && <img src={logoUrl} alt="logo" />}
+      <div className='CompanyCard card'>
+        <div className="card-body">
+          <b className='card-title'>{name}</b>
+          <p className="card-text">{description}</p>
+          {logoUrl && <img src={logoUrl} alt="logo" />}
+        </div>
       </div>
     </Link>
   );

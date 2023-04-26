@@ -4,7 +4,7 @@
  *
  *
  * Props:
- *  -id, title, company, salary, equity
+ *  -id, title, companyName, salary, equity
  *
  * States:
  * - none

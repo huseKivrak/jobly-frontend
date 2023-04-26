@@ -33,7 +33,7 @@ function SearchForm({ handleSearch }) {
   }
 
   return (
-    <div className="SearchForm">
+    <div className="SearchForm mb-5">
       <form onSubmit={handleSubmit}>
         <label htmlFor="search-input"></label>
         <input
