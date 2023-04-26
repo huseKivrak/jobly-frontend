@@ -16,6 +16,7 @@ import JoblyApi from "./api";
 
 function CompanyList() {
   const [companies, setCompanies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   console.log("CompanyList is running");
 
@@ -23,6 +24,7 @@ function CompanyList() {
     async function initializeCompanies() {
       const allCompanies = await JoblyApi.getCompanies();
       setCompanies(allCompanies);
+      setIsLoading(false);
     }
     initializeCompanies();
   }, []);
@@ -31,6 +33,8 @@ function CompanyList() {
     const companyResults = await JoblyApi.findCompanies(term);
     setCompanies(companyResults);
   }
+
+  if(isLoading) return <p>Loading...</p>
 
   return (
     <div className="CompanyList">

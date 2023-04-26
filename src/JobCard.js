@@ -13,14 +13,16 @@
  */
 
 
-function JobCard({ title, companyName= "", salary, equity }) {
-  console.log("JobCard is running")
+function JobCard({ title, companyName = "", salary, equity }) {
+  console.log("JobCard is running");
   return (
-    <div className="JobCard">
-      <b className="JobCard-title">{title}</b>
-      {companyName && <p>{companyName}</p>}
-      <p>Salary: {salary}</p>
-      <p>Equity: {equity}</p>
+    <div className="JobCard card">
+      <div className="card-body">
+        <b className="card-title">{title}</b>
+        {companyName && <p className="card-text">{companyName}</p>}
+        <p className="card-text mb-0">Salary: {salary}</p>
+        <p className="card-text">Equity: {equity}</p>
+      </div>
     </div>
   );
 }

@@ -5,10 +5,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("https://react-jobly-1.surge.sh/static/media/background.6549e727ece768243a0f.png")
+  background-image: url("https://react-jobly-1.surge.sh/static/media/background.6549e727ece768243a0f.png");
+  align-items: center;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.card {
+  width: 500px;
+  margin-bottom: 15px;
 }

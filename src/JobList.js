@@ -37,7 +37,6 @@ function JobList() {
 
   if(isLoading) return <p>Loading...</p>
 
-
   return (
     <div className='JobList'>
       <SearchForm handleSearch={searchAndSetJobs} />
