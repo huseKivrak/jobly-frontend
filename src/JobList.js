@@ -42,6 +42,7 @@ function JobList() {
     <div className='JobList'>
       <SearchForm handleSearch={searchAndSetJobs} />
       <JobCardList jobs={jobs}/>
+      {jobs.length === 0 && <p>No jobs found</p>}
     </div>
   );
 }

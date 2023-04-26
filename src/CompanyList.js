@@ -34,15 +34,16 @@ function CompanyList() {
 
   return (
     <div className="CompanyList">
-      <SearchForm handleSearch={searchAndSetCompanies}/>
+      <SearchForm handleSearch={searchAndSetCompanies} />
       {companies.map(c => (
         <CompanyCard
-        handle={c.handle}
-        name={c.name}
-        description={c.description}
-        logoUrl={c.logoUrl}
+          handle={c.handle}
+          name={c.name}
+          description={c.description}
+          logoUrl={c.logoUrl}
         />
       ))}
+      {companies.length === 0 && <p>No companies found</p>}
     </div>
   );
 }
