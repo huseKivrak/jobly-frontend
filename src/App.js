@@ -23,7 +23,6 @@ function App() {
         <Nav />
         <RoutesList />
       </BrowserRouter>
-
     </div>
   );
 }

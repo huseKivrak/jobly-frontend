@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
  *
  *
  * Props:
+ *  - handle
  *  - name
  *  - description
- *  - logo
- *  - companyHandle
+ *  - logoUrl
  *
  *
  * States:
@@ -18,14 +18,14 @@ import { Link } from "react-router-dom";
  *
  * CompanyList > CompanyCard
  */
-function CompanyCard({ name, description, logo, companyHandle }) {
+function CompanyCard({ handle, name, description, logoUrl }) {
   console.log("CompanyCard is running");
   return (
-    <Link to={`/companies/${companyHandle}`}>
+    <Link to={`/companies/${handle}`}>
       <div className='CompanyCard'>
         <h1 className='CompanyCard-header font-size-4'>{name}</h1>
         <p>{description}</p>
-        <img src={logo} alt="logo" />
+        <img src={logoUrl} alt="logo" />
       </div>
     </Link>
   );
