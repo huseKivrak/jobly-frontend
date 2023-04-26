@@ -37,6 +37,7 @@ function CompanyDetail() {
     }
     initializeCompanyJobs();
   }, []);
+
   if (isLoading) return <p>Loading...</p>;
 
   return (
@@ -48,7 +49,7 @@ function CompanyDetail() {
           <JobCardList jobs={company.jobs} />
         </div>
       )}
-      {error && <p>Sorry, no such company!</p>}
+      {error && <Navigate to="/companies" />}
     </div>
   );
 }

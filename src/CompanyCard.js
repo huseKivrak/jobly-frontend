@@ -25,7 +25,7 @@ function CompanyCard({ handle, name, description, logoUrl }) {
       <div className='CompanyCard'>
         <h1 className='CompanyCard-header font-size-4'>{name}</h1>
         <p>{description}</p>
-        <img src={logoUrl} alt="logo" />
+        {logoUrl && <img src={logoUrl} alt="logo" />}
       </div>
     </Link>
   );
