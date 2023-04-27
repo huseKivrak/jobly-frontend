@@ -11,7 +11,8 @@ import JoblyApi from "./api";
  *
  * State:
  * - jobs: [{title, salary, equity, company_handle}]
- * //TODO: isLoading state
+ * - isLoading: boolean
+ *
  *
  * RoutesList -> JobList -> [SearchForm, JobCardList]
  */

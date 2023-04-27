@@ -29,7 +29,7 @@ function SearchForm({ handleSearch }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     console.log("SearchForm handleSubmit:",formData);
-    handleSearch(formData); //TODO: can just pass formData.term
+    handleSearch(formData.term);
     setFormData({term: ""});
   }
 

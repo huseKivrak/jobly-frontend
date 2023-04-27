@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import JobCardList from "./JobCardList";
 import JoblyApi from "./api";
 
-
 /** CompanyDetail
  *
  * findJobsByCompany(): gets company data for '/:handle` using JoblyApi
@@ -11,9 +10,11 @@ import JoblyApi from "./api";
  * Props:
  * - none
  *
- * States:
- * - none  TODO: update states
  *
+ * States:
+ * - isLoading: boolean
+ * - company : JoblyAPI return, {name, description, jobs, ...}
+ * - error : boolean
  *
  * App > CompanyDetail > JobCardList
  */
@@ -25,26 +26,28 @@ function CompanyDetail() {
   const { handle } = useParams();
   console.log("CompanyDetail is running");
 
-  useEffect(function initializeCompanyJobsOnMount() {
-    async function initializeCompanyJobs() {
-      let companyData;
-      try {
-        companyData = await JoblyApi.getCompany(handle);
-      } catch (err) {
-        setError(true);
-      }
+  useEffect(
+    function initializeCompanyJobsOnMount() {
+      async function initializeCompanyJobs() {
+        let companyData;
+        try {
+          companyData = await JoblyApi.getCompany(handle);
+          setCompany(companyData);
+        } catch (err) {
+          setError(err);
+        }
 
-      setCompany(companyData); //TODO: can move into try block
-      setIsLoading(false);
-    }
-    initializeCompanyJobs();
-  }, [handle]);
+        setIsLoading(false);
+      }
+      initializeCompanyJobs();
+    },
+    [handle]
+  );
 
   if (isLoading) return <p>Loading...</p>;
 
-  //TODO: className to div
   return (
-    <div>
+    <div className="CompanyRetail">
       {company && (
         <div className="CompanyDetail">
           <h1 className="CompanyDetail-header">{company.name}</h1>
@@ -52,7 +55,7 @@ function CompanyDetail() {
           <JobCardList jobs={company.jobs} />
         </div>
       )}
-      {error && <Navigate to="/companies" />}
+      {error && <p>{`${error}`}</p>}
     </div>
   );
 }

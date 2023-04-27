@@ -7,9 +7,12 @@ import JoblyApi from "./api";
  * List of searchable companies
  *
  * Props:
+ * - none
  *
- * State:  TODO: add other state
+ *
+ * State:
  * - companies: [{handle, name, description, numEmployees, logoUrl}]
+ * - isLoading : boolean
  *
  * RoutesList -> CompanyList -> {SearchForm, CompanyCard}
  */
@@ -29,7 +32,10 @@ function CompanyList() {
     initializeCompanies();
   }, []);
 
-  //TODO: docstring
+  /** searchAndSetCompanies
+   *  Gets company results for search term from JoblyApi,
+   *  updates company state
+   */
   async function searchAndSetCompanies({ term }) {
     const companyResults = await JoblyApi.findCompanies(term);
     setCompanies(companyResults);
@@ -41,7 +47,7 @@ function CompanyList() {
     <div className="CompanyList">
       <SearchForm handleSearch={searchAndSetCompanies} />
       {companies.map(c => (
-        <CompanyCard  //TODO: set key
+        <CompanyCard key={c.handle}
           handle={c.handle}
           name={c.name}
           description={c.description}

@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
  * CompanyList > CompanyCard
  */
 
-//TODO: better alt tags
+
 function CompanyCard({ handle, name, description, logoUrl }) {
   console.log("CompanyCard is running");
   return (
@@ -25,7 +25,7 @@ function CompanyCard({ handle, name, description, logoUrl }) {
         <div className="card-body">
           <b className='card-title'>{name}</b>
           <p className="card-text">{description}</p>
-          {logoUrl && <img src={logoUrl} alt="logo" />}
+          {logoUrl && <img src={logoUrl} alt={`logo for ${name}`} />}
         </div>
       </div>
     </Link>

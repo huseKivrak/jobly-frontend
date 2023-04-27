@@ -7,7 +7,11 @@ import JobList from "./JobList";
 /**
  * RoutesList
  *
- * Props: none
+ * Props:
+ * - none
+ *
+ * States:
+ * - none
  *
  *
  * /companies/[invalid handle] -> redirect to /companies
