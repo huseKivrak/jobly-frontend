@@ -28,6 +28,7 @@ function App() {
   async function loginUser({ username, password }) {
     const token = await JoblyApi.getAuthToken({ username, password });
     setUserToken(token);
+    console.log("App token:", token);
     const user = await JoblyApi.getUserData(username);
     console.log("App user:", user);
     setUser(user);
