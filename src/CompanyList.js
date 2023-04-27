@@ -36,7 +36,7 @@ function CompanyList() {
    *  Gets company results for search term from JoblyApi,
    *  updates company state
    */
-  async function searchAndSetCompanies({ term }) {
+  async function searchAndSetCompanies(term) {
     const companyResults = await JoblyApi.findCompanies(term);
     setCompanies(companyResults);
   }

@@ -8,29 +8,26 @@ import { useState } from "react";
  * - handleSearch: calls function in parent to search for string
  *
  * State:
- * - formData TODO: describe form
+ * - term: search term
  *
  * [CompanyList, JobList] -> SearchForm
  */
 
 function SearchForm({ handleSearch }) {
-  const [formData, setFormData] = useState({term: ""});
+  const [term, setTerm] = useState("");
 
-  console.log("SearchForm", formData);
+  console.log("SearchForm", term);
 
   function handleChange(evt) {
-    const { name, value } = evt.target;
-    setFormData(fd => ({
-      ...fd,
-      [name]: value
-    }))
+    const term = evt.target.value;
+    setTerm(term);
   }
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    console.log("SearchForm handleSubmit:",formData);
-    handleSearch(formData.term);
-    setFormData({term: ""});
+    console.log("SearchForm term:",term);
+    handleSearch(term);
+    setTerm("");
   }
 
   return (
@@ -40,7 +37,7 @@ function SearchForm({ handleSearch }) {
         <input
           id="search-input"
           name="term"
-          value={formData.term}
+          value={term}
           placeholder="Enter search term..."
           onChange={handleChange}
           required

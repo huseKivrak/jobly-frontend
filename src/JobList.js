@@ -32,7 +32,7 @@ function JobList() {
     initializeJobs();
   }, []);
 
-  async function searchAndSetJobs({ term }) {
+  async function searchAndSetJobs(term) {
     const jobResults = await JoblyApi.findJobs(term);
     setJobs(jobResults);
   }
