@@ -19,6 +19,8 @@ function LoginForm({ loginUser }) {
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [alert, setAlert] = useState("");
 
+  console.log("LoginForm ran");
+
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData(fd => ({
@@ -31,10 +33,10 @@ function LoginForm({ loginUser }) {
     evt.preventDefault();
     try{
       await loginUser(formData);
-    }catch(err){
+    } catch(err){
       setAlert(err);
     }
-
+    setFormData({username: "", password: ""});
   }
 
 
@@ -54,11 +56,12 @@ function LoginForm({ loginUser }) {
         name="password"
         value={formData.password}
         onChange={handleChange}
+        type="password"
         required
       />
-      {alert && <div class="alert alert-danger" role="alert">
+      {alert && (<div className="alert alert-danger" role="alert">
         {alert}
-      </div>}
+      </div>)}
       <button>Submit</button>
     </form>
   );

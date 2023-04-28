@@ -26,12 +26,13 @@ import LoginForm from "./LoginForm";
  * App -> RoutesList -> [HomePage, CompanyList, CompanyDetail, JobList]
  */
 
-function RoutesList({ user = null, loginUser, registerUser, editProfile }) {
-  console.log("RoutesList is running");
+function RoutesList({ user, loginUser, registerUser, editProfile }) {
+
+  console.log("RoutesList is running, user=", user);
 
   return (
     <div className="RoutesList">
-      {user ? (
+      {user.username ? (
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/companies" element={<CompanyList />} />

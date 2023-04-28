@@ -22,7 +22,12 @@ import userContext from "./userContext";
  * App -> [Nav, RoutesList]
  */
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    username: "",
+    firstName: "",
+    lastName: "",
+    email: ""
+  });
   const [userToken, setUserToken] = useState("");
 
   console.log("APP", user, userToken);
@@ -39,6 +44,7 @@ function App() {
     setUser({ username });
   }
 
+
   /**initializeUserOnTokenChange
    *
    * On mount, get user data from API and set in user state
@@ -47,9 +53,14 @@ function App() {
     function initializeUserOnTokenChange() {
       async function getAndSetUser() {
         try {
+          if(userToken) {
           let currUser = await JoblyApi.getUserData(user.username);
           console.log("App user:", currUser);
           setUser(currUser);
+          }
+          else {
+            setUser({});
+          }
         } catch (err) {
           setUser({});
         }
@@ -71,9 +82,11 @@ function App() {
   async function registerUser({ registerFormData }) { }
 
   /**logoutUser
-   *
+   * Delete token
    */
-  function logoutUser() { }
+  function logoutUser() {
+    setUserToken("");
+   }
 
   return (
     <div className="App">
@@ -82,8 +95,8 @@ function App() {
         firstName: user.firstName
       }}>
         <BrowserRouter>
-          <Nav />
-          <RoutesList user={user} />
+          <Nav logoutUser={logoutUser}/>
+          <RoutesList user={user} loginUser={loginUser}/>
         </BrowserRouter>
       </userContext.Provider>
     </div>

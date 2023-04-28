@@ -9,14 +9,14 @@ import React from "react";
  * Displays NavBar at the top of each page, linking to Jobly, Companies, Jobs
  *
  * Props:
- * - none
+ * - logoutUser()
  *
  * States:
  * - none
  *
  * App -> Nav
  */
-function Nav() {
+function Nav({ logoutUser }) {
   const { username } = useContext(userContext);
   console.log("Nav is running");
 
@@ -27,7 +27,7 @@ function Nav() {
           <NavLink className="nav-item" to="/">Jobly</NavLink>
           <NavLink className="nav-item" to="/companies">Companies</NavLink>
           <NavLink className="nav-item" to="/jobs">Jobs</NavLink>
-          <NavLink className="nav-item" to="/">Log out {username}</NavLink>
+          <NavLink className="nav-item" to="/" onClick={logoutUser}>Log out {username}</NavLink>
         </>
         :
         <>

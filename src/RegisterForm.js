@@ -72,7 +72,7 @@ function RegisterForm({ registerUser }) {
         required
       />
       {alert && (
-        <div class="alert alert-danger" role="alert">
+        <div className="alert alert-danger" role="alert">
           {alert}
         </div>
       )}
