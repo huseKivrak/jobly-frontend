@@ -9,7 +9,13 @@ import { useState } from "react";
  *
  */
 function RegisterForm({ registerUser }) {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    username: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: ""
+  });
   const [alerts, setAlerts] = useState([]);
 
   function handleChange(evt) {

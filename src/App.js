@@ -75,7 +75,7 @@ function App() {
    *
    */
   async function registerUser(formData) {
-    let token = registerAndGetToken(formData);
+    let token = await JoblyApi.registerAndGetToken(formData);
     setUserToken(token);
     setUser((u) => ({
       ...u,

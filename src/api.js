@@ -45,7 +45,7 @@ class JoblyApi {
     return res.companies;
   }
 
-  static async findCompanies(query){
+  static async findCompanies(query) {
     let res = await this.request(`companies/?nameLike=${query}`);
     return res.companies;
   }
@@ -54,7 +54,6 @@ class JoblyApi {
     let res = await this.request(`companies/${handle}`);
     return res.company;
   }
-
 
   //##########  Jobs Routes  ##########
 
@@ -68,17 +67,15 @@ class JoblyApi {
     return res.jobs;
   }
 
-
   //##########  Auth Routes  ##########
 
   static async getAuthToken({ username, password }) {
-    let res = await this.request(`auth/token`, {username, password}, 'POST');
+    let res = await this.request(`auth/token`, { username, password }, "POST");
     return res.token;
   }
 
-  static async registerAndGetToken({username, password, email, firstName, lastName}){
-    const user = {username, password, email, firstName, lastName};
-    let res = await this.request(`auth/register`, {user}, 'POST' );
+  static async registerAndGetToken({username, firstName, lastName, email, password}) {
+    let res = await this.request(`auth/register`, {username, firstName, lastName, email, password}, "POST");
     return res.token;
   }
 
@@ -89,9 +86,7 @@ class JoblyApi {
     return res.user;
   }
 
-  static async editUserData(){
-
-  }
+  static async editUserData() {}
 }
 
 export default JoblyApi;
