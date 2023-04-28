@@ -6,7 +6,6 @@ import { BrowserRouter } from "react-router-dom";
 import JoblyApi from "./api";
 import userContext from "./userContext";
 
-
 /** App
  * Renders Nav and RoutesList
  *
@@ -25,26 +24,22 @@ function App() {
     username: "",
     firstName: "",
     lastName: "",
-    email: ""
+    email: "",
   });
   const [userToken, setUserToken] = useState("");
   console.log("APP", user, userToken);
-
 
   /** loginUser
    *
    * Authenticate username/password and set token and username in state
    */
   async function loginUser({ username, password }) {
-
     let token = await JoblyApi.getAuthToken({ username, password });
     console.log("token:", token);
     setUserToken(token);
     JoblyApi.token = token;
     setUser({ username });
-
   }
-
 
   /**initializeUserOnTokenChange
    *
@@ -54,12 +49,11 @@ function App() {
     function initializeUserOnTokenChange() {
       async function getAndSetUser() {
         try {
-          if(userToken) {
-          let currUser = await JoblyApi.getUserData(user.username);
-          console.log("App user:", currUser);
-          setUser(currUser);
-          }
-          else {
+          if (userToken) {
+            let currUser = await JoblyApi.getUserData(user.username);
+            console.log("App user:", currUser);
+            setUser(currUser);
+          } else {
             setUser({});
           }
         } catch (err) {
@@ -75,29 +69,43 @@ function App() {
    *
    *
    */
-  async function editProfile({ editFormData }) { }
+  async function editProfile({ editFormData }) {}
 
   /** registerUser
    *
    */
-  async function registerUser({ registerFormData }) { }
+  async function registerUser(formData) {
+    let token = registerAndGetToken(formData);
+    setUserToken(token);
+    setUser((u) => ({
+      ...u,
+      username: formData.username,
+    }));
+  }
 
   /**logoutUser
    * Delete token
    */
   function logoutUser() {
     setUserToken("");
-   }
+  }
 
   return (
     <div className="App">
-      <userContext.Provider value={{
-        username: user.username,
-        firstName: user.firstName
-      }}>
+      <userContext.Provider
+        value={{
+          username: user.username,
+          firstName: user.firstName,
+        }}
+      >
         <BrowserRouter>
-          <Nav logoutUser={logoutUser}/>
-          <RoutesList user={user} loginUser={loginUser}/>
+          <Nav logoutUser={logoutUser} />
+          <RoutesList
+            user={user}
+            loginUser={loginUser}
+            registerUser={registerUser}
+            editProfile={editProfile}
+          />
         </BrowserRouter>
       </userContext.Provider>
     </div>

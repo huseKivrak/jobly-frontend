@@ -76,6 +76,11 @@ class JoblyApi {
     return res.token;
   }
 
+  static async registerAndGetToken({username, password, email, firstName, lastName}){
+    const user = {username, password, email, firstName, lastName};
+    let res = await this.request(`auth/register`, {user}, 'POST' );
+    return res.token;
+  }
 
   //##########  Users Routes  ##########
 

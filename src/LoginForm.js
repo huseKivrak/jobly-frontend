@@ -15,7 +15,10 @@ import { useNavigate } from "react-router-dom";
  */
 
 function LoginForm({ loginUser }) {
-  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [formData, setFormData] = useState({
+    username: "testuser",
+    password: "password",
+  });
   const [alert, setAlert] = useState("");
   const navigate = useNavigate();
   console.log("LoginForm ran");
@@ -32,12 +35,12 @@ function LoginForm({ loginUser }) {
     evt.preventDefault();
     try {
       await loginUser(formData);
+      navigate("/");
     } catch (err) {
       setAlert(err);
     }
 
     // setFormData({ username: "", password: "" });
-    navigate('/');
   }
 
   return (

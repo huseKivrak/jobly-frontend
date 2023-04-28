@@ -10,7 +10,7 @@ import { useState } from "react";
  */
 function RegisterForm({ registerUser }) {
   const [formData, setFormData] = useState({});
-  const [alert, setAlert] = useState([]);
+  const [alerts, setAlerts] = useState([]);
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -23,24 +23,28 @@ function RegisterForm({ registerUser }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     try {
+      console.log("formData:", formData);
       registerUser(formData);
     } catch (err) {
-      setAlert(err);
+      console.log("err:", err);
+      setAlerts((a) => [...a, err]);
+      console.log("alerts", alerts);
     }
   }
 
   return (
-    <form className="RegisterForm" onSubmit={handleSubmit}>
+    <form className="RegisterForm form" onSubmit={handleSubmit}>
       <label htmlFor="username-input">Username</label>
       <input
+        className="form-control"
         id="username-input"
         name="username"
         value={formData.username}
         onChange={handleChange}
-        disabled
       />
-      <label htmlFor="password-input">Email</label>
+      <label htmlFor="password-input">Password</label>
       <input
+        className="form-control"
         id="password-input"
         name="password"
         value={formData.password}
@@ -49,6 +53,7 @@ function RegisterForm({ registerUser }) {
       />
       <label htmlFor="first-name-input">First Name</label>
       <input
+        className="form-control"
         id="first-name-input"
         name="firstName"
         value={formData.firstName}
@@ -57,6 +62,7 @@ function RegisterForm({ registerUser }) {
       />
       <label htmlFor="last-name-input">Last Name</label>
       <input
+        className="form-control"
         id="last-name-input"
         name="lastName"
         value={formData.lastName}
@@ -65,17 +71,20 @@ function RegisterForm({ registerUser }) {
       />
       <label htmlFor="email-input">Email</label>
       <input
-        id="first-name-input"
-        name="firstName"
+        className="form-control"
+        id="email-input"
+        name="email"
         value={formData.email}
         onChange={handleChange}
         required
       />
-      {alert && (
-        <div className="alert alert-danger" role="alert">
-          {alert}
-        </div>
-      )}
+      {alerts.length > 0 &&
+        alerts.map((a, idx) => (
+          <div key={idx} className="alert alert-danger" role="alert">
+            {a}
+          </div>
+        ))}
+
       <button>Submit</button>
     </form>
   );
