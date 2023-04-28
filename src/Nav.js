@@ -23,6 +23,7 @@ function Nav({ logoutUser }) {
   const { username } = useContext(userContext);
   console.log("Nav is running");
 
+  // can move navigate to root to logoutUser if App wrapped in BrowserRouter
   return (
     <nav className="Nav navbar navbar-light bg-light text-primary justify-content-between">
       {username ?
@@ -30,7 +31,9 @@ function Nav({ logoutUser }) {
           <NavLink className="nav-item" to="/">Jobly</NavLink>
           <NavLink className="nav-item" to="/companies">Companies</NavLink>
           <NavLink className="nav-item" to="/jobs">Jobs</NavLink>
-          <NavLink className="nav-item" to="/" onClick={logoutUser}>Log out {username}</NavLink>
+          <NavLink className="nav-item" to="/" onClick={logoutUser}>
+            Log out {username}
+          </NavLink>
         </>
         :
         <>

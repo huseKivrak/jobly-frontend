@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
  */
 
 function RegisterForm({ registerUser }) {
+  //TODO: make global const for empty state
   const [formData, setFormData] = useState({
     username: "",
     firstName: "",
@@ -22,8 +23,11 @@ function RegisterForm({ registerUser }) {
     email: "",
     password: ""
   });
+  //TODO: can initialize alerts to null and then assign alerts to err
   const [alerts, setAlerts] = useState([]);
   const navigate = useNavigate();
+
+  console.log("alert state", alerts);
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -92,7 +96,7 @@ function RegisterForm({ registerUser }) {
       />
       {alerts.length > 0 && (
         <div className="form-control">
-          {alerts.map((a, idx) => (
+          {alerts[0].map((a, idx) => (
             <div className="alert alert-danger" role="alert" key={idx}>
               {a}
             </div>

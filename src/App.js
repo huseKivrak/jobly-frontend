@@ -56,6 +56,7 @@ function App() {
         try {
           // if token present, load user data into user state
           if (userToken) {
+            //TODO: can extract username by decoding token
             let currUser = await JoblyApi.getUserData(user.username);
             console.log("App user:", currUser);
             setUser(currUser);
@@ -72,7 +73,7 @@ function App() {
       }
       getAndSetUser();
     },
-    [userToken]
+    [userToken] //TODO: will be ok if remove user state in above todo
   );
 
   /** editProfile

@@ -69,13 +69,18 @@ class JoblyApi {
 
   //##########  Auth Routes  ##########
 
+  //TODO: can set JoblyApi.token in these routes
+
   static async getAuthToken({ username, password }) {
     let res = await this.request(`auth/token`, { username, password }, "POST");
     return res.token;
   }
 
   static async registerAndGetToken({username, firstName, lastName, email, password}) {
-    let res = await this.request(`auth/register`, {username, firstName, lastName, email, password}, "POST");
+    let res = await this.request(
+      `auth/register`,
+      {username, firstName, lastName, email, password},
+      "POST");
     return res.token;
   }
 

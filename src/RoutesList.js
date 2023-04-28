@@ -31,6 +31,7 @@ function RoutesList({ user, loginUser, registerUser, editProfile }) {
 
   console.log("RoutesList is running, user=", user);
 
+  // can move HomePage out of ternary and wrap entire ternary in <Routes>
   return (
     <div className="RoutesList">
       {user.username ? (
