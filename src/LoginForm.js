@@ -27,14 +27,14 @@ function LoginForm({ loginUser }) {
     }));
   }
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    try {
-      loginUser(formData);
+    try{
+      await loginUser(formData);
+    }catch(err){
+      setAlert(err);
     }
-    catch (err) {
-      setAlert("Invalid username/password");
-    }
+
   }
 
 
@@ -44,7 +44,7 @@ function LoginForm({ loginUser }) {
       <input
         id="username-input"
         name="username"
-        value={FormData.username}
+        value={formData.username}
         onChange={handleChange}
         required
       />
@@ -52,7 +52,7 @@ function LoginForm({ loginUser }) {
       <input
         id="password-input"
         name="password"
-        value={FormData.password}
+        value={formData.password}
         onChange={handleChange}
         required
       />
