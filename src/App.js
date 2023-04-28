@@ -51,7 +51,7 @@ function App() {
           console.log("App user:", currUser);
           setUser(currUser);
         } catch (err) {
-          return;
+          setUser({});
         }
       }
       getAndSetUser();
@@ -77,11 +77,13 @@ function App() {
 
   return (
     <div className="App">
-      <userContext.Provider value={{ user }}>
+      <userContext.Provider value={{
+        username: user.username,
+        firstName: user.firstName
+      }}>
         <BrowserRouter>
           <Nav />
           <RoutesList user={user} />
-          <LoginForm loginUser={loginUser} />
         </BrowserRouter>
       </userContext.Provider>
     </div>
