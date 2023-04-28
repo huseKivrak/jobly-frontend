@@ -33,24 +33,15 @@ function RegisterForm({ registerUser }) {
     }));
   }
 
+  // navigate to homepage after successful registration
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      console.log("formData:", formData);
       await registerUser(formData);
       navigate("/");
     } catch (err) {
-      console.log("err:", err);
       setAlerts((a) => [...a, err]);
-      console.log("alerts", alerts);
     }
-    setFormData({
-      username: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: ""
-    });
   }
 
   return (
@@ -100,7 +91,7 @@ function RegisterForm({ registerUser }) {
         required
       />
       {alerts.length > 0 && (
-        <div >
+        <div className="form-control">
           {alerts.map((a, idx) => (
             <div className="alert alert-danger" role="alert" key={idx}>
               {a}
