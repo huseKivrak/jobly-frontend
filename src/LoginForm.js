@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 /** LoginForm
  *
  * Form for user to enter username and password
@@ -14,31 +14,31 @@ import { useState } from "react";
  * RoutesList -> LoginForm
  */
 
-
 function LoginForm({ loginUser }) {
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [alert, setAlert] = useState("");
-
+  const navigate = useNavigate();
   console.log("LoginForm ran");
 
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setFormData(fd => ({
+    setFormData((fd) => ({
       ...fd,
-      [name]: value
+      [name]: value,
     }));
   }
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-    try{
+    try {
       await loginUser(formData);
-    } catch(err){
+    } catch (err) {
       setAlert(err);
     }
-    setFormData({username: "", password: ""});
-  }
 
+    // setFormData({ username: "", password: "" });
+    navigate('/');
+  }
 
   return (
     <form className="LoginForm" onSubmit={handleSubmit}>
@@ -59,13 +59,14 @@ function LoginForm({ loginUser }) {
         type="password"
         required
       />
-      {alert && (<div className="alert alert-danger" role="alert">
-        {alert}
-      </div>)}
+      {alert && (
+        <div className="alert alert-danger" role="alert">
+          {alert}
+        </div>
+      )}
       <button>Submit</button>
     </form>
   );
 }
-
 
 export default LoginForm;

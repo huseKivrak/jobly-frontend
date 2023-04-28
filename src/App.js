@@ -4,7 +4,6 @@ import Nav from "./Nav";
 import { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import JoblyApi from "./api";
-import LoginForm from "./LoginForm";
 import userContext from "./userContext";
 
 
@@ -29,19 +28,21 @@ function App() {
     email: ""
   });
   const [userToken, setUserToken] = useState("");
-
   console.log("APP", user, userToken);
+
 
   /** loginUser
    *
    * Authenticate username/password and set token and username in state
    */
   async function loginUser({ username, password }) {
+
     let token = await JoblyApi.getAuthToken({ username, password });
     console.log("token:", token);
     setUserToken(token);
     JoblyApi.token = token;
     setUser({ username });
+
   }
 
 
