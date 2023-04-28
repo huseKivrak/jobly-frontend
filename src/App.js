@@ -19,6 +19,7 @@ import userContext from "./userContext";
  *
  * App -> [Nav, RoutesList]
  */
+
 function App() {
 
   const blankUser = {
@@ -98,7 +99,7 @@ function App() {
   }
 
   /**logoutUser
-   * Delete token
+   * Reset token in state and JoblyApi class
    */
   function logoutUser() {
     setUserToken("");
