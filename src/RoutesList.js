@@ -4,12 +4,17 @@ import CompanyList from "./CompanyList";
 import CompanyDetail from "./CompanyDetail";
 import JobList from "./JobList";
 import EditProfileForm from './EditProfileForm';
-import RegisterForm from './RegisterForm.js'
+import RegisterForm from './RegisterForm';
+import LoginForm from "./LoginForm";
+
 /**
  * RoutesList
  *
  * Props:
- * - none
+ * - user: {username, firstName, lastName, email}
+ * - loginUser()
+ * - registerUser()
+ * = editProfile()
  *
  * States:
  * - none
@@ -40,10 +45,11 @@ function RoutesList({ user = null, loginUser, registerUser, editProfile }) {
         </Routes>
       ) : (
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginForm loginUser={loginUser} />} />
           <Route
             path="/signup"
-            element={<UserForm registerUser={registerUser} />}
+            element={<RegisterForm registerUser={registerUser} />}
           />
           <Route path="/*" element={<Navigate to="/" />} />
         </Routes>
