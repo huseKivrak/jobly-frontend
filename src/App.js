@@ -20,12 +20,15 @@ import userContext from "./userContext";
  * App -> [Nav, RoutesList]
  */
 function App() {
-  const [user, setUser] = useState({
+
+  const defaultUser = {
     username: "",
     firstName: "",
     lastName: "",
     email: "",
-  });
+  };
+
+  const [user, setUser] = useState(defaultUser);
   const [userToken, setUserToken] = useState("");
   console.log("APP", user, userToken);
 
@@ -34,6 +37,7 @@ function App() {
    * Authenticate username/password and set token and username in state
    */
   async function loginUser({ username, password }) {
+
     let token = await JoblyApi.getAuthToken({ username, password });
     console.log("token:", token);
     setUserToken(token);
@@ -54,10 +58,10 @@ function App() {
             console.log("App user:", currUser);
             setUser(currUser);
           } else {
-            setUser({});
+            setUser(defaultUser);
           }
         } catch (err) {
-          setUser({});
+          setUser(defaultUser);
         }
       }
       getAndSetUser();
@@ -69,7 +73,7 @@ function App() {
    *
    *
    */
-  async function editProfile({ editFormData }) {}
+  async function editProfile({ editFormData }) { }
 
   /** registerUser
    *
@@ -77,6 +81,7 @@ function App() {
   async function registerUser(formData) {
     let token = await JoblyApi.registerAndGetToken(formData);
     setUserToken(token);
+    JoblyApi.token = token;
     setUser((u) => ({
       ...u,
       username: formData.username,

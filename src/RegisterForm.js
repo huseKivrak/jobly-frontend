@@ -1,13 +1,17 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 /** RegisterForm
  *
  * Props:
- * - registerUser
+ * - registerUser()
  *
+ * State: formData: {username, firstName, lastName, email, password}
  *
- *
+ * RoutesList -> RegisterForm
  */
+
 function RegisterForm({ registerUser }) {
   const [formData, setFormData] = useState({
     username: "",
@@ -17,6 +21,7 @@ function RegisterForm({ registerUser }) {
     password: ""
   });
   const [alerts, setAlerts] = useState([]);
+  const navigate = useNavigate();
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -26,16 +31,24 @@ function RegisterForm({ registerUser }) {
     }));
   }
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
     try {
       console.log("formData:", formData);
-      registerUser(formData);
+      await registerUser(formData);
+      navigate("/");
     } catch (err) {
       console.log("err:", err);
       setAlerts((a) => [...a, err]);
       console.log("alerts", alerts);
     }
+    setFormData({
+      username: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: ""
+    });
   }
 
   return (
@@ -84,13 +97,15 @@ function RegisterForm({ registerUser }) {
         onChange={handleChange}
         required
       />
-      {alerts.length > 0 &&
-        alerts.map((a, idx) => (
-          <div key={idx} className="alert alert-danger" role="alert">
-            {a}
-          </div>
-        ))}
-
+      {alerts.length > 0 && (
+        <div >
+          {alerts.map((a, idx) => (
+            <div className="alert alert-danger" role="alert" key={idx}>
+              {a}
+            </div>
+          ))}
+        </div>
+      )}
       <button>Submit</button>
     </form>
   );
