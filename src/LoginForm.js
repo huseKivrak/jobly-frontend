@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
  * Form for user to enter username and password
  *
  * Props:
- * - loginUser()
+ * - loginUser() (App -> RoutesList -> LoginForm)
  *
  * State:
  * - formData: {username, password}
@@ -32,6 +32,7 @@ function LoginForm({ loginUser }) {
     }));
   }
 
+  // navigate to HomePage on successful login
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
@@ -40,8 +41,6 @@ function LoginForm({ loginUser }) {
     } catch (err) {
       setAlert(err);
     }
-
-    // setFormData({ username: "", password: "" });
   }
 
   return (

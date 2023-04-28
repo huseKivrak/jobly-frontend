@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 /** RegisterForm
  *
  * Props:
- * - registerUser()
+ * - registerUser() (App -> RoutesList -> RegisterForm)
  *
- * State: formData: {username, firstName, lastName, email, password}
+ * State:
+ * - formData: {username, firstName, lastName, email, password}
+ * - alerts: [alert1, alert2, ...]
  *
  * RoutesList -> RegisterForm
  */

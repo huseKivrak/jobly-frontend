@@ -9,10 +9,13 @@ import React from "react";
  * Displays NavBar at the top of each page, linking to Jobly, Companies, Jobs
  *
  * Props:
- * - logoutUser()
+ * - logoutUser() (App -> RoutesList -> Nav)
  *
  * States:
  * - none
+ *
+ * Context Used:
+ * - username
  *
  * App -> Nav
  */

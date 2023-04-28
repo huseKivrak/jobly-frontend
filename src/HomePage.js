@@ -13,12 +13,16 @@ import userContext from './userContext';
  * States:
  * - none
  *
+ * Context Used:
+ * - firstName
+ *
  * RoutesList -> HomePage
  */
 
 function HomePage() {
   const { firstName } = useContext(userContext);
   console.log(`HomePage is running`);
+
   return (
     <div className="HomePage mt-5">
       <h1 className="HomePage-header">Jobly</h1>

@@ -23,7 +23,8 @@ import LoginForm from "./LoginForm";
  * /companies/[invalid handle] -> redirect to /companies
  * /jobs/... -> redirect to /jobs
  *
- * App -> RoutesList -> [HomePage, CompanyList, CompanyDetail, JobList]
+ * App -> RoutesList -> if logged in: [HomePage, CompanyList, CompanyDetail, JobList]
+ *                      if not logged in: [HomePage, LoginForm, RegisterForm]
  */
 
 function RoutesList({ user, loginUser, registerUser, editProfile }) {
